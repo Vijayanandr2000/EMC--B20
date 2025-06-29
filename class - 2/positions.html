@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positions</title>
+    <style>
+        .item {
+            background-color: coral;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .static {
+            position: static;
+            top: 10px;
+            left: 10px;
+            z-index: 1;
+        }
+
+        .relative {
+            position: relative;
+            top: 10px;
+            background-color: red;
+        }
+
+        .parent1 {
+            /* position: relative; */
+            border: 1px solid red;
+            padding: 10px;
+        }
+
+        .parent2 {
+            position: relative;
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        .parent3 {
+            /* position: relative; */
+            border: 1px solid green;
+            padding: 10px;
+        }
+
+        .absolute {
+            position: absolute;
+            top: 0px;
+        }
+
+        .fixed {
+            position: fixed;
+        }
+
+        .sticky {
+            /* position: sticky;
+            margin-top: 200px;
+
+            top: 20px */
+            background-color: blue;
+        }
+
+
+        .scroll {
+            height: 200vh;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <div class="item static">Static</div>
+    <div class="item stat">Relative</div> -->
+    <!-- <div class="parent1">
+        <div class="parent2">
+            <div class="parent3">
+                <div class="item absolute">Absolute</div>
+            </div>
+        </div>
+    </div> -->
+    <div class="item fixed">Fixed</div>
+    <div class="item sticky">Sticky</div>
+
+    <div class="scroll"></div>
+
+</body>
+
+</html>
