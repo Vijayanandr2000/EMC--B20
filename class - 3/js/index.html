@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS</title>
+</head>
+
+<body>
+
+    <script>
+        // console.log(b)
+
+        // // var a = 10
+        // let a = 10
+        // console.log(a)
+        // var a = undefined
+        // let a = 20 //2000
+        // if (true) {
+        //     a = 10 // undefined -> 10 //2000
+        //     console.log(a)
+        // }
+
+        // console.log(a)
+
+        // let a = 10
+        // console.log(a)
+        // a = 20
+
+        // let int = 1
+        // let str = "vijay"
+        // let bool = false
+        // let und = undefined
+        // // let symbol = new Symbol("vijay")
+
+
+        // console.log(typeof int)
+        // console.log(typeof str)
+        // console.log(typeof bool)
+        // console.log(typeof und)
+        // // console.log(typeof symbol)
+
+        // let nul = null
+        // let arr = [1, "vijay", false, undefined, [], null]
+        // let obj = {
+        //     name: "vijay",
+        //     age: 24
+        // }
+
+        // console.log(typeof nul)
+        // console.log(typeof arr)
+        // console.log(typeof obj)
+
+        // function vijay() {
+        //     console.log("vijay function triggered")
+        // }
+
+        // vijay()
+        // console.log(typeof vijay)
+
+
+        // let age = 2
+
+
+        // if (age >= 18) {
+        //     console.log("eligible")
+        // } else {
+        //     console.log("not-eligible")
+        // }
+
+        // let a = 10, b = 20, c = 30
+
+        // if (a > b && a > c) {
+        //     console.log("a is bigger")
+        // } else {
+        //     if (b > a && b > c) {
+        //         console.log("b is bigger")
+        //     } else {
+        //         console.log("c is bigger")
+        //     }
+        // }
+
+        // if (a > b && a > c) {
+        //     console.log("a is bigger")
+        // } else if (b > a && b > c) {
+        //     console.log("b is bigger")
+        // } else {
+        //     console.log("c is bigger")
+        // }
+
+        // true ? "true" : "false" //terenary oprator
+
+        // a > b && a > c ? console.log("a")
+        //     : b > a && b > c ? console.log("b")
+        //         : console.log("c")
+
+        // for(initialtion;condition;inc/dec){}
+
+        // for (let i = 1; i <= 10; i++) {
+        //     console.log("vijay", i)
+        // }
+
+        // 100/2 = 50/2 = 25/2 = 12/2 = 6/2 = 3/2 = 1
+
+        // let count = 0
+        // for (let i = 100; i > 1;) {
+        //     i = Math.floor(i / 2)
+        //     count++
+        //     console.log(i)
+        // }
+        // console.log(count)
+
+        // let a = 123456
+        // let count = 0
+        // while (a !== 0) {
+        //     a = Math.floor(a / 10)
+        //     // count = count + 1
+        //     // count += 1
+        //     count++
+        // }
+        // console.log(count)
+
+        // let a = 0
+        // do {
+        //     console.log(a)
+        // } while (a !== 0)
+
+        let guess = Math.floor(Math.random() * 10) + 1
+        let attempt = 0
+
+        while (true) {
+            let userInput = prompt("Guess a number between 1 to 10")
+            attempt++
+
+            if (guess == userInput) {
+                alert("You guessed it right...! 😀" + "attempt: " + attempt)
+                break;
+            } else if (guess < userInput) {
+                alert("Too High")
+            } else {
+                alert("Too Low")
+            }
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>
