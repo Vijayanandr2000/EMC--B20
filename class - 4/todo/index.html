@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO App</title>
+</head>
+
+<body>
+
+    <section>
+        <h2>TODO APP</h2>
+        <input id="userInput" type="text" placeholder="Enter the task list...">
+        <button id="addBtn" onclick="addEvent()">Add</button>
+    </section>
+
+    <section>
+        <ul>
+
+        </ul>
+    </section>
+
+    <script>
+        const input = document.getElementById("userInput") // => DOM
+        const addBtn = document.getElementById("addBtn")
+        const ul = document.querySelector("ul")
+        console.log("ul", ul)
+
+        // addBtn.addEventListener("click", function () {
+        //     const userInput = input.value
+
+
+        //     const li = document.createElement("li")
+        //     li.textContent = userInput
+
+        //     const delBtn = document.createElement("button")
+        //     delBtn.innerText = "DEL"
+
+        //     delBtn.addEventListener("click", function () {
+        //         li.remove()
+        //     })
+
+        //     li.appendChild(delBtn)
+        //     ul.appendChild(li)
+
+        //     input.value = ""
+        // })
+
+        function addEvent() {
+            const userInput = input.value
+
+
+            const li = document.createElement("li")
+            li.textContent = userInput
+
+            const delBtn = document.createElement("button")
+            delBtn.innerHTML = `<b>del</b>`
+
+            delBtn.addEventListener("click", function () {
+                li.remove()
+            })
+
+            li.appendChild(delBtn)
+            ul.appendChild(li)
+
+            input.value = ""
+        }
+
+
+    </script>
+
+</body>
+
+</html>

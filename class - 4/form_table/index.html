@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form and Table</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 10px
+        }
+    </style>
+</head>
+
+<body>
+
+    <section id="form">
+
+        <h1>User Form</h1>
+
+        <form>
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+            </div>
+
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+            </div>
+
+            <div>
+                <label for="number">Number:</label>
+                <input type="number" id="number" name="number">
+            </div>
+
+            <div>
+                <label for="address">Address:</label>
+                <textarea id="address" name="address"></textarea>
+            </div>
+
+            <div>
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>Z
+                    <option value="Others">Others</option>Z
+                </select>
+            </div>
+
+            <div>
+                <label for="dob">DOB:</label>
+                <input type="date" id="dob" name="dob">
+            </div>
+
+            <div>
+                <label for="hobbies">Hobbies:</label>
+                <div>
+                    <input type="checkbox" id="reading" name="hobbies" value="reading">
+                    <label for="reading">Reading</label>
+
+                    <input type="checkbox" id="painting" name="hobbies" value="painting">
+                    <label for="painting">Painting</label>
+
+                    <input type="checkbox" id="coding" name="hobbies" value="coding">
+                    <label for="coding">Coding</label>
+                </div>
+            </div>
+
+            <div>
+                <label for="Education">Education:</label>
+                <div>
+                    <input type="radio" id="pg" name="education" value="pg">
+                    <label for="pg">PG</label>
+                    <input type="radio" id="ug" name="education" value="ug">
+                    <label for="ug">UG</label>
+                </div>
+            </div>
+
+            <input type="submit" value="Submit">
+        </form>
+
+    </section>
+
+    <br>
+
+    <section id="table">
+        <table border="1" id="userTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Number</th>
+                    <th>Address</th>
+                    <th>Gender</th>
+                    <th>DOB</th>
+                    <th>Hobbies</th>
+                    <th>Education</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        let form = document.querySelector("form")
+        const table = document.getElementById("userTable").getElementsByTagName("tbody")[0]
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault()
+
+
+            // const name = document.getElementById("name").value
+            // const email = document.getElementById("email").value
+            // const number = document.getElementById("number").value
+            // const address = document.getElementById("address").value
+            // const gender = document.getElementById("gender").value
+            // const dob = document.getElementById("dob").value
+            // const education = document.querySelector('input[name="education"]:checked')?.value
+            // const hobbies = document.querySelectorAll('input[name="hobbies"]:checked')
+
+            // let hobbiesData = []
+
+            // // hobbies[0].value
+
+            // for (let i = 0; i < hobbies.length; i++) {
+            //     // console.log("hobbies[i].value", hobbies[i].value)
+            //     hobbiesData.push(hobbies[i].value)
+            // }
+
+            const formData = new FormData(form)
+
+            let user = {
+                name: formData.get("name"),
+                email: formData.get("email"),
+                number: formData.get("number"),
+                address: formData.get("address"),
+                dob: formData.get("dob"),
+                gender: formData.get("gender"),
+                hobbiesData: formData.getAll("hobbies").join(", "),
+                education: formData.get("education"),
+            }
+
+            const row = table.insertRow()
+
+            row.innerHTML = `
+                <td>${user.name}</td>
+                <td>${user.email}</td>
+                <td>${user.number}</td>
+                <td>${user.address}</td>
+                <td>${user.gender}</td>
+                <td>${user.dob}</td>
+                <td>${user.hobbiesData}</td>
+                <td>${user.education}</td>
+                <td>
+                    <button onclick="deleteBtn(this)">Delete</button>    
+                </td>
+            `
+
+            form.reset()
+        })
+
+        function deleteBtn(btn) {
+            btn.parentNode.parentNode.remove()
+        }
+    </script>
+
+</body>
+
+</html>
