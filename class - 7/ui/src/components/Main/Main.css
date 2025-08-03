@@ -1,0 +1,19 @@
+main section {
+  display: flex;
+  background-color: #ff8001;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 40px;
+  color: white;
+}
+
+section .left {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}

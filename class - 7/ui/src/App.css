@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+footer {
+  background-color: gray;
+  color: white;
+  padding: 40px 80px;
+  font-size: 20px;
+
+  display: flex;
+  gap: 50px;
+}
+
+footer ul {
+  list-style: none;
+  margin-top: 20px;
+  line-height: 30px;
+}
