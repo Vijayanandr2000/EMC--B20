@@ -17,6 +17,7 @@ const FormAndTableComponent = () => {
 
   return (
     <>
+      <h1>Vijay</h1>
       <section className="form">
         <form onSubmit={handleSubmit}>
           <div>
