@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
-import { GlobalContext } from "../Wrapper";
+import { GlobalContext1 } from "../Context";
 
 const Page3 = () => {
-  const { name, age } = useContext(GlobalContext);
-  console.log("data", name, age);
-  return <div>Page3 = {name}</div>;
+  const { name } = useContext(GlobalContext1);
+  return <div>Page3 name = {name}</div>;
 };
 
 export default Page3;
