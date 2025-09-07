@@ -1,0 +1,142 @@
+
+📘 MongoDB Queries in Node.js — From Beginner to Pro
+
+This guide uses the official MongoDB Node.js Driver (not Mongoose).  
+
+------------------------------------------------------------
+1. Setup
+------------------------------------------------------------
+const { MongoClient } = require("mongodb");
+
+const uri = "mongodb://localhost:27017"; // your connection string
+const client = new MongoClient(uri);
+
+async function run() {
+  try {
+    await client.connect();
+    const db = client.db("testdb");
+    const users = db.collection("users");
+    // Your queries go here
+  } finally {
+    await client.close();
+  }
+}
+
+run().catch(console.error);
+
+------------------------------------------------------------
+2. Basic CRUD Operations
+------------------------------------------------------------
+
+➡️ Insert
+------------------------------------------------------------
+await users.insertOne({ name: "Alice", age: 25 });
+
+await users.insertMany([
+  { name: "Bob", age: 30 },
+  { name: "Charlie", age: 35 }
+]);
+
+➡️ Find
+------------------------------------------------------------
+const allUsers = await users.find().toArray();
+const youngUsers = await users.find({ age: { $lt: 30 } }).toArray();
+const alice = await users.findOne({ name: "Alice" });
+
+➡️ Update
+------------------------------------------------------------
+await users.updateOne(
+  { name: "Alice" },
+  { $set: { age: 26 } }
+);
+
+await users.updateMany(
+  { age: { $gte: 30 } },
+  { $inc: { age: 1 } }
+);
+
+➡️ Delete
+------------------------------------------------------------
+await users.deleteOne({ name: "Charlie" });
+await users.deleteMany({ age: { $gt: 40 } });
+
+------------------------------------------------------------
+3. Intermediate Queries
+------------------------------------------------------------
+
+Projection (fields)
+------------------------------------------------------------
+const namesOnly = await users.find({}, { projection: { name: 1, _id: 0 } }).toArray();
+
+Sorting
+------------------------------------------------------------
+const sortedUsers = await users.find().sort({ age: -1 }).toArray();
+
+Pagination
+------------------------------------------------------------
+const page1 = await users.find().skip(0).limit(5).toArray();
+const page2 = await users.find().skip(5).limit(5).toArray();
+
+Operators
+------------------------------------------------------------
+const selected = await users.find({ name: { $in: ["Alice", "Bob"] } }).toArray();
+const complex = await users.find({
+  $or: [{ age: { $lt: 25 } }, { age: { $gt: 35 } }]
+}).toArray();
+
+------------------------------------------------------------
+4. Advanced Queries (Aggregation)
+------------------------------------------------------------
+
+Group & Count
+------------------------------------------------------------
+const ageGroups = await users.aggregate([
+  { $group: { _id: "$age", count: { $sum: 1 } } }
+]).toArray();
+
+Match + Sort + Limit
+------------------------------------------------------------
+const topUsers = await users.aggregate([
+  { $match: { age: { $gte: 25 } } },
+  { $sort: { age: -1 } },
+  { $limit: 3 }
+]).toArray();
+
+Lookup (Join Collections)
+------------------------------------------------------------
+const userOrders = await users.aggregate([
+  {
+    $lookup: {
+      from: "orders",
+      localField: "name",
+      foreignField: "userName",
+      as: "orders"
+    }
+  }
+]).toArray();
+
+Unwind (Expand arrays)
+------------------------------------------------------------
+const expanded = await users.aggregate([
+  { $unwind: "$hobbies" }
+]).toArray();
+
+------------------------------------------------------------
+5. Indexing & Performance
+------------------------------------------------------------
+
+Create Index
+------------------------------------------------------------
+await users.createIndex({ name: 1 });
+
+Explain Query Plan
+------------------------------------------------------------
+const plan = await users.find({ name: "Alice" }).explain("executionStats");
+console.log(plan);
+
+------------------------------------------------------------
+✅ Summary
+------------------------------------------------------------
+- Basic: insertOne, findOne, updateOne, deleteOne
+- Intermediate: projections, sorting, pagination, operators ($in, $or)
+- Advanced: aggregation ($group, $match, $lookup, $unwind), indexing
